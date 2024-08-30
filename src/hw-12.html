@@ -1,0 +1,93 @@
+<div class="timer" id="timer-1">
+    <div class="field">
+        <span class="value" data-value="days">00</span>
+        <span class="label">Day</span>
+    </div>
+
+    <div class="field">
+        <span class="value" data-value="hours">00</span>
+        <span class="label">Hour</span>
+    </div>
+
+    <div class="field">
+        <span class="value" data-value="mins">00</span>
+        <span class="label">Minute</span>
+    </div>
+
+    <div class="field">
+        <span class="value" data-value="secs">00</span>
+        <span class="label">Second</span>
+    </div>
+</div>
+
+<script>
+    class CountdownTimer {
+        constructor({ selector, targetDate }) {
+            this.targetDate = targetDate;
+            this.timer = document.querySelector(selector);
+            this.daysDiff = this.timer.querySelector('[data-value="days"]');
+            this.hoursDiff = this.timer.querySelector('[data-value="hours"]');
+            this.minsDiff = this.timer.querySelector('[data-value="mins"]');
+            this.secsDiff = this.timer.querySelector('[data-value="secs"]');
+            this.start();
+        }
+        start() {
+            this.updateTimer();
+
+            setInterval(() => {
+                this.updateTimer();
+            }, 1000);
+        }
+        updateTimer() {
+            const currentTime = Date.now();
+            const time = this.targetDate - currentTime;
+
+            if (time < 0) {
+                this.stop();
+                return;
+            }
+
+            const days = Math.floor(time / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const mins = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+            const secs = Math.floor((time % (1000 * 60)) / 1000);
+
+            this.daysDiff.textContent = this.pad(days);
+            this.hoursDiff.textContent = this.pad(hours);
+            this.minsDiff.textContent = this.pad(mins);
+            this.secsDiff.textContent = this.pad(secs);
+        }
+
+        pad(value) {
+            return String(value).padStart(2, '0');
+        }
+
+        stop() {
+            clearInterval(this.intervalId);
+            this.daysDiff.textContent = '00';
+            this.hoursDiff.textContent = '00';
+            this.minsDiff.textContent = '00';
+            this.secsDiff.textContent = '00';
+        }
+    }
+
+    new CountdownTimer({
+        selector: '#timer-1',
+        targetDate: new Date('Aug 10, 2025 10:00:00'),
+    });
+</script>
+<style>
+    .timer {
+        display: flex;
+        justify-content: space-between;
+        width: 5cm;
+        margin: 100px auto;
+    }
+    .field {
+        text-align: center;
+    }
+    .label {
+        font-size: 2em;
+        color: #000000;
+    }
+</style>

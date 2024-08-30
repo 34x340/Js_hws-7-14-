@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 1 -->
+
+    <!-- <h1>Interval timer</h1>
+    <div id="message"></div>
+
+    <script>
+    let count = 0;
+        const intervalId = setInterval(() => {
+            count++
+            const message = document.getElementById('message')
+            message.innerHTML += `<p>Повідомлення ${count}</p>`;
+            
+            if (count === 10) {
+                clearInterval(intervalId);
+            }
+        }, 2000);
+        </script> -->
+
+    <!-- 2 -->
+
+    <!-- <div class="box" id="box-1"></div>
+    <div class="box" id="box-2"></div>
+
+    <script>
+        let position1 = 50;
+        let position2 = 150;
+        const box1 = document.getElementById('box-1');
+        const box2 = document.getElementById('box-2');
+
+        const intervalId = setInterval(() => {
+            position1 += 10;
+            position2 -= 10;
+            box1.style.left = position1 + 'px';
+            box2.style.left = position2 + 'px';
+
+            if (position1 > 100 || position2 < 0) {
+                clearInterval(intervalId);
+            }
+        }, 100);
+    </script> -->
+
+    <!-- 3 -->
+
+    <!-- <div id="score">Score - 0</div>
+    <div class="target" id="target"></div>
+
+    <script>
+        let score = 0;
+        let timeLeft = 15;
+        const target = document.getElementById('target');
+        const showScore = document.getElementById('score');
+
+        function moveTarget() {
+            const x = Math.floor(Math.random() * (window.innerWidth - 50));
+            const y = Math.floor(Math.random() * (window.innerHeight - 50));
+            target.style.left = x + 'px';
+            target.style.top = y + 'px';
+        }
+
+        target.addEventListener('click', () => {
+            score++;
+            showScore.textContent = `Score - ${score}`;
+            moveTarget();
+        });
+
+        const intervalId = setInterval(() => {
+            timeLeft--;
+            if (timeLeft <= 0) {
+                clearInterval(intervalId);
+                alert(`End, ur score is -${score}`);
+                target.style.display = 'none';
+            }
+        }, 1000);
+
+        moveTarget();
+    </script> -->
+
+    <!-- 4 -->
+
+    <!-- <form id="timer-form">
+        <label for="time-input">time in secs -</label>
+        <input type="number" id="time-input" required>
+        <button type="submit">Start</button>
+    </form>
+    <div id="timer-msg"></div>
+
+    <script>
+        document.getElementById('timer-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const timeInput = document.getElementById('time-input').value;
+            const timermsg = document.getElementById('timer-msg');
+
+            timermsg.textContent = `Timer set for a ${timeInput} sec`;
+
+            setTimeout(() => {
+                timermsg.textContent = 'times up';
+            }, timeInput * 1000);
+        });
+    </script> -->
+</body>
+
+</html>
